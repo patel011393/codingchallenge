@@ -1,0 +1,198 @@
+
+
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <title>demo</title>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="js/jquery.circlechart.js"></script>
+      <style>
+         body{
+         background: #f0f0f0 url(./bgnoise_lg.jpg);
+         }
+         .demo {
+         max-width: 960px;
+         /*  margin: 150px auto;*/
+         }
+         .demo > div {
+         float: left;
+         margin: 20px;
+         }
+      </style>
+      <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+   </head>
+   <body>
+      <div class="demo">
+         <!--    Interpreting Cohen's d effect size an interactive visualization-->
+         <h1>Interpreting Cohen's d effect size</h1>
+         <Style>	
+            h1{
+            margin: 1em 0 0.5em 0;
+            font-weight: normal;
+            position: relative;
+            text-shadow: 0 -1px rgba(0,0,0,0.6);
+            font-size: 28px;
+            line-height: 40px;
+            background: #355681;
+            background: rgba(53,86,129, 0.8);
+            border: 1px solid #fff;
+            padding: 5px 15px;
+            color: white;
+            border-radius: 0 10px 0 10px;
+            box-shadow: inset 0 0 5px rgba(53,86,129, 0.5);
+            font-family: 'Muli', sans-serif;
+            }
+         </style>
+         <button class="demo-1" onclick="a()"data-percent="57.93">Cohen's U3</button>
+         <br>
+         <button class="demo-4" onclick="d()"data-percent="16.51">Number Needed to Treat</button>
+         <button class="demo-3" onclick="c()"data-percent="55.62">Probability of Superiority</button>
+         <br>
+         <button class="demo-2" onclick="b()" data-percent="92.03">% Overlap</button>
+      </div>
+      <p id="myHeader">d=0.2</p>
+      <Style>	
+         #myHeader{
+         margin: 50px 100px 50px 50px;
+         font-weight: 600;
+         font-family: 'Titillium Web', sans-serif;
+         position: relative;
+         text-shadow: 0 -1px 1px rgba(0,0,0,0.2);
+         font-size: 18px;
+         line-height: 20px;
+         color: #355681;
+         border-bottom: 1px solid rgba(53,86,129, 0.3);
+         }
+      </style>
+      <script>
+         function a() {
+             document.getElementById("myHeader").innerHTML = "With a Cohen's d of 0.2, 58 % of the treatment group will be above the mean of the control group (Cohen's U3)";
+         }
+             
+         function b() {
+             document.getElementById("myHeader").innerHTML = "92 % of the two groups will overlap.";
+         }
+         
+         function c() {
+             document.getElementById("myHeader").innerHTML = "There is a 56 % chance that a person picked at random from the treatment group will have a higher score than a person picked at random from the control group (probability of superiority). ";
+         }
+         
+         function d() {
+             document.getElementById("myHeader").innerHTML = "Moreover, in order to have one more favorable outcome in the treatment group compared to the control group we need to treat 16.5 people.";
+         }    
+      </script>
+      <Style>
+         /*    padding: 50px 50px;border-radius: 12px;*/
+         .demo-1 {	margin: 1em 0 0.5em 0;
+         font-weight: 600;
+         font-family: 'Titillium Web', sans-serif;
+         position: relative;
+         font-size: 12px;
+         line-height: 20px;
+         color: #788699;
+         font-family: 'Muli', sans-serif;
+         margin-left: 52.5%;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);}
+         .demo-2 {margin: 1em 0 0.5em 0;
+         font-weight: 600;
+         font-family: 'Titillium Web', sans-serif;
+         position: relative;
+         font-size: 12px;
+         line-height: 20px;
+         color: #788699;
+         font-family: 'Muli', sans-serif;
+         margin-left: 52.5%; 100px;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);}
+         .demo-3 {margin: 1em 0 0.5em 0;
+         font-weight: 600;
+         font-family: 'Titillium Web', sans-serif;
+         position: relative;
+         font-size: 12px;
+         line-height: 20px;
+         color: #788699;
+         font-family: 'Muli', sans-serif;margin-left: 35%;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);}
+         .demo-4 {margin: 1em 0 0.5em 0;
+         font-weight: 600;
+         font-family: 'Titillium Web', sans-serif;
+         position: relative;
+         font-size: 12px;
+         line-height: 20px;
+         color: #788699;
+         font-family: 'Muli', sans-serif;margin-left: 25%;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);}    
+         .demo-1:hover {background: #ffffff}
+         .demo-2:hover {background: #ffffff}
+         .demo-3:hover {background: #ffffff}
+         .demo-4:hover {background: #ffffff}
+      </Style>
+      <script>
+         $('.demo-1').percentcircle({
+         });
+         
+         $('.demo-2').percentcircle({
+         animate : true,
+         diameter : 100,
+         guage: 3,
+         coverBg: '#fff',
+         bgColor: '#efefef',
+         fillColor: '#E95546',
+         percentSize: '15px',
+         percentWeight: 'normal'
+         });
+         
+         $('.demo-3').percentcircle({
+         animate : true,
+         diameter : 100,
+         guage: 3,
+         coverBg: '#fff',
+         bgColor: '#efefef',
+         fillColor: '#DA4453',
+         percentSize: '18px',
+         percentWeight: 'normal'
+         });
+         $('.demo-4').percentcircle({
+         animate : true,
+         diameter : 100,
+         guage: 3,
+         coverBg: '#fff',
+         bgColor: '#efefef',
+         fillColor: '#46CFB0',
+         percentSize: '18px',
+         percentWeight: 'normal'
+         });		
+         $('.demo-5').percentcircle({
+         animate : true,
+         diameter : 100,
+         guage: 3,
+         coverBg: '#fff',
+         bgColor: '#efefef',
+         fillColor: '#8BC163',
+         percentSize: '18px',
+         percentWeight: '20px'
+         });	
+         $('.demo-6').percentcircle({
+         animate : true,
+         diameter : 100,
+         guage: 10,
+         coverBg: '#fff',
+         bgColor: '#efefef',
+         fillColor: '#D870A9',
+         percentSize: '18px',
+         percentWeight: 'normal'
+         });		
+         			
+         	
+      </script><script type="text/javascript">
+         var _gaq = _gaq || [];
+         _gaq.push(['_setAccount', 'UA-36251023-1']);
+         _gaq.push(['_setDomainName', 'jqueryscript.net']);
+         _gaq.push(['_trackPageview']);
+         
+         (function() {
+           var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+           ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+         })();
+         
+      </script>
+   </body>
+</html>
+
