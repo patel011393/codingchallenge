@@ -13,6 +13,30 @@
 	body{
 		font-family: 'Markazi Text', serif;
 	}
+	.infolabel{
+			position:absolute;
+			min-width:120px;
+			max-width:300px;
+			max-height:80px;
+			text-align: center;
+			padding:10px;
+			padding-top:4px;
+		}
+
+		.infolabel p{
+			font-size:14px;
+			font-weight:300;
+			text-align:left;
+		}
+
+		.infolabel h4{
+			font-size:20px;
+			font-weight:400;
+			text-align:center;
+			color:white;
+			padding:4px;
+			border-radius:4px;
+		}
 	</style>
 
 </head>
@@ -112,6 +136,11 @@ Kylie L. Scales, Peter I. Millere, Lara L. Sousaa, Rui Seabrab, and David W. Sim
 	            // .endAngle(function(d,i) { return ((i + 1) * 2 * Math.PI) / numBars; })
 	            .innerRadius(0);
 
+					var arc_invisible = d3.svg.arc()
+	            .startAngle(function(d,i) { return (i * 2 * Math.PI) / numBars; })
+	            .endAngle(function(d,i) { return ((i + 1) * 2 * Math.PI) / numBars; })
+	            .innerRadius(0);
+
 	        var graidentScale = d3.scale.linear().domain([-210, 210]).range([0, 100]);
 
 	        var radialGradient = svg.append("defs")
@@ -139,8 +168,46 @@ Kylie L. Scales, Peter I. Millere, Lara L. Sousaa, Rui Seabrab, and David W. Sim
 	            .attr("class", "segments")
 	            .attr("d", arc);
 
+							var segments_invisible = svg.selectAll("path.segmentsI")
+			            .data(data)
+			            .enter().append("path")
+			            .each(function(d) {
+			                d.outerRadius = verticalScale(+d.segment);
+			            }) //set d.outerRadius = 0 if want transition
+									.on("mouseover",function(d,i){
+											d3.select("#segment"+i).style("opacity",0.5);
+											d3.select(this).style("cursor","pointer");
+											drawInfolabel(d,i);
+									})
+									.on("mouseout",function(d,i){
+										  d3.select("#segment"+i).style("opacity",1);
+											removeInfolabel(d,i);
+									})
+			            .attr("fill", "blue")
+									.style("opacity",0)
+			            .attr("d", arc_invisible);
 
 
+							function drawInfolabel(d,i){
+
+								var labelHTML = "<h4 style='background-color:#b30000;' >"+d.category+"</h4><b><p>&nbsp;&nbsp; "+d.summary+"</b></p>";
+
+
+								var infolabel=d3.select("body").append("div")
+									.attr("class","infolabel")
+									.style("box-shadow", "5px 5px 5px #888888")
+									.style("background-color", "white")
+									.style("left", (d3.event.pageX+28) + "px")
+		 							.style("top", (d3.event.pageY - 28) + "px")
+									.attr("id", "infolabel-"+i)
+									.style("color","black")
+									.html(labelHTML);
+						}
+
+						function removeInfolabel(d,i){
+							//d3.select(".infolabel").remove();
+							d3.select("#infolabel-"+i).remove();
+						}
 
 	        //OUTER MOST CIRCLE
 	        svg.append("circle")
